@@ -6,7 +6,7 @@ An unofficial configurator for the **EWEADN X87** mechanical keyboard on Linux. 
 software only runs on Windows; this app talks to the keyboard directly over USB HID. It works
 through the **2.4 GHz dongle** with no drivers and no extra services.
 
-![Lighting page with live effect preview](docs/screenshots/lighting.png)
+<picture><source media="(prefers-color-scheme: dark)" srcset="docs/screenshots/lighting-dark.png"><img src="docs/screenshots/lighting-light.png" alt="Lighting page with live effect preview"></picture>
 
 ## Features
 
@@ -28,7 +28,7 @@ Settings are written to the keyboard's own memory, so they keep working on any c
 
 | Status | Keys | Remapping a key |
 |---|---|---|
-| ![Status](docs/screenshots/status.png) | ![Keys](docs/screenshots/keys.png) | ![Key dialog](docs/screenshots/key-dialog.png) |
+| <picture><source media="(prefers-color-scheme: dark)" srcset="docs/screenshots/status-dark.png"><img src="docs/screenshots/status-light.png" alt="Status"></picture> | <picture><source media="(prefers-color-scheme: dark)" srcset="docs/screenshots/keys-dark.png"><img src="docs/screenshots/keys-light.png" alt="Keys"></picture> | <picture><source media="(prefers-color-scheme: dark)" srcset="docs/screenshots/key-dialog-dark.png"><img src="docs/screenshots/key-dialog-light.png" alt="Key dialog"></picture> |
 
 ## Supported hardware
 
@@ -122,12 +122,6 @@ Portuguese command names also work (`efeitos`, `sono`, `teclas`, `resetar-teclas
 - Macros, the side light bar and firmware updates are **not supported**. This app never flashes firmware.
 
 ## Troubleshooting
-
-**The 2.4 GHz connection drops after a few idle minutes and only comes back after re-plugging the dongle.**
-The kernel keeps the dongle connected; what drops is the radio link between keyboard and dongle.
-Try, in this order: move the dongle to a USB extension close to the keyboard and away from other
-2.4 GHz receivers and USB 3.0 ports; disable or lengthen the sleep mode (**Settings** tab or
-`eweadn-x87 sleep 0`).
 
 **Keys type different characters than the keycaps.** The X87 has US ANSI keycaps. If your system
 uses another layout (e.g. Brazilian ABNT2), switch to *English (US, intl., with dead keys)* to

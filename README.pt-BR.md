@@ -6,7 +6,7 @@ Configurador não oficial do teclado mecânico **EWEADN X87** para Linux. O soft
 roda no Windows; este app conversa direto com o teclado via USB HID. Ele funciona pelo
 **dongle 2.4 GHz**, sem drivers e sem serviços extras.
 
-![Aba de iluminação com pré-visualização animada](docs/screenshots/lighting.png)
+<picture><source media="(prefers-color-scheme: dark)" srcset="docs/screenshots/lighting-dark.png"><img src="docs/screenshots/lighting-light.png" alt="Aba de iluminação com pré-visualização animada"></picture>
 
 ## Funções
 
@@ -28,7 +28,7 @@ As configurações são gravadas na memória do próprio teclado, então funcion
 
 | Status | Teclas | Remapeando uma tecla |
 |---|---|---|
-| ![Status](docs/screenshots/status.png) | ![Teclas](docs/screenshots/keys.png) | ![Janela de tecla](docs/screenshots/key-dialog.png) |
+| <picture><source media="(prefers-color-scheme: dark)" srcset="docs/screenshots/status-dark.png"><img src="docs/screenshots/status-light.png" alt="Status"></picture> | <picture><source media="(prefers-color-scheme: dark)" srcset="docs/screenshots/keys-dark.png"><img src="docs/screenshots/keys-light.png" alt="Teclas"></picture> | <picture><source media="(prefers-color-scheme: dark)" srcset="docs/screenshots/key-dialog-dark.png"><img src="docs/screenshots/key-dialog-light.png" alt="Janela de tecla"></picture> |
 
 ## Hardware suportado
 
@@ -122,11 +122,6 @@ Os nomes em inglês também funcionam (`effects`, `sleep`, `keys`, `reset-keys`,
 - Macros, barra de luz lateral e atualização de firmware **não são suportados**. O app nunca grava firmware.
 
 ## Solução de problemas
-
-**A conexão 2.4 GHz cai depois de alguns minutos parado e só volta tirando e recolocando o dongle.**
-O kernel continua vendo o dongle; o que cai é o link de rádio entre o teclado e o dongle. Tente,
-nesta ordem: coloque o dongle num extensor USB perto do teclado, longe de outros receptores
-2.4 GHz e de portas USB 3.0; desligue ou aumente o modo de sono (aba **Ajustes** ou `eweadn-x87 sono 0`).
 
 **As teclas digitam caracteres diferentes dos impressos.** O X87 tem keycaps no padrão americano
 (ANSI). Se o sistema usa outro layout (ex.: ABNT2), troque para *Inglês (EUA, internacional, com
