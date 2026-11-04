@@ -1,0 +1,14 @@
+[Desktop Entry]
+Type=Application
+Name=EWEADN X87
+GenericName=Keyboard configurator
+GenericName[pt_BR]=Configurador de teclado
+Comment=Battery, lighting and keys for the EWEADN X87 keyboard
+Comment[pt_BR]=Bateria, iluminação e teclas do teclado EWEADN X87
+Exec=eweadn-x87
+Icon=io.github.eweadn.x87
+Terminal=false
+Categories=Settings;HardwareSettings;Utility;
+Keywords=keyboard;rgb;eweadn;x87;battery;teclado;bateria;
+StartupNotify=true
+StartupWMClass=io.github.eweadn.x87

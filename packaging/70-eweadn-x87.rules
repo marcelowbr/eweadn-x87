@@ -1,0 +1,3 @@
+# Libera o acesso ao teclado EWEADN X87 (dongle 2.4G e cabo) para o usuário logado
+KERNEL=="hidraw*", ATTRS{idVendor}=="0c45", ATTRS{idProduct}=="fefe", MODE="0660", TAG+="uaccess"
+KERNEL=="hidraw*", ATTRS{idVendor}=="0c45", ATTRS{idProduct}=="8006", MODE="0660", TAG+="uaccess"
