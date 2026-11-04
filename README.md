@@ -66,13 +66,19 @@ a udev rule so that any logged-in user can access the keyboard without `sudo`.
 ```bash
 git clone https://github.com/marcelowbr/eweadn-x87.git
 cd eweadn-x87
-./install.sh            # installs for your user only, no sudo (./install.sh --remover to uninstall)
+scripts/install.sh      # installs for your user only, no sudo (--remover to uninstall)
 ```
 
 Or run it without installing:
 
 ```bash
-python3 __main__.py
+PYTHONPATH=src python3 -m eweadn_x87
+```
+
+It can also be installed with pip (GTK and PyGObject still come from the system packages):
+
+```bash
+pip install --user .
 ```
 
 If the app says it has **no permission** to open `/dev/hidrawN`, install the udev rule once:
@@ -85,7 +91,7 @@ sudo udevadm control --reload-rules && sudo udevadm trigger
 ### Building the packages
 
 ```bash
-./build.sh              # creates dist/eweadn-x87 (single-file executable) and dist/*.deb
+scripts/build.sh        # creates dist/eweadn-x87 (single-file executable) and dist/*.deb
 ```
 
 `dist/eweadn-x87` is a Python zipapp: one file containing the whole app. It uses the system's
@@ -136,14 +142,18 @@ to avoid the message.
 The protocol was reverse-engineered from the official web configurator (for interoperability)
 and verified against the hardware. It is documented in [docs/PROTOCOL.md](docs/PROTOCOL.md).
 
-| File | Purpose |
-|---|---|
-| `x87proto.py` | HID protocol, device access and the CLI |
-| `x87gui.py` | GTK 4 / libadwaita interface |
-| `x87preview.py` | Animated lighting preview |
-| `x87i18n.py` | English/Portuguese strings |
-| `__main__.py` | Entry point (GUI without arguments, CLI with arguments) |
-| `build.sh`, `install.sh`, `packaging/` | Executable, `.deb`, desktop entry, icon and udev rule |
+```
+src/eweadn_x87/
+├── __main__.py     entry point: GUI without arguments, CLI with arguments
+├── protocol.py     HID protocol and device access
+├── cli.py          command-line interface
+├── gui.py          GTK 4 / libadwaita interface
+├── preview.py      animated lighting preview
+└── i18n.py         English/Portuguese strings
+scripts/            build.sh (executable + .deb), install.sh (per-user install)
+packaging/          desktop entry, icon and udev rule
+docs/               protocol documentation and screenshots
+```
 
 ## Disclaimer
 

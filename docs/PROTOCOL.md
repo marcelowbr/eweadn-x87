@@ -102,7 +102,7 @@ back and forth, `0xFE` heartbeat, `0x80` custom per-key.
 
 512 bytes, **4 bytes per key**, indexed by the key's matrix position (`offset = 4 * index`).
 All zeros means "factory default" for that key. Positions are listed in `LAYOUT` in
-[`x87proto.py`](../x87proto.py) (e.g. Esc = 0, A = 49, Fn = 85, ↑ = 90).
+[`protocol.py`](../src/eweadn_x87/protocol.py) (e.g. Esc = 0, A = 49, Fn = 85, ↑ = 90).
 
 | Action | Bytes |
 |---|---|

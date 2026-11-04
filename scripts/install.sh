@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
-# Instala só para o usuário atual, sem sudo (use "./install.sh --remover" para desinstalar)
+# Instala só para o usuário atual, sem sudo (use "scripts/install.sh --remover" para desinstalar)
 set -euo pipefail
 
 APP_ID="io.github.eweadn.x87"
-ROOT="$(cd "$(dirname "$0")" && pwd)"
+ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 BIN="$HOME/.local/bin/eweadn-x87"
 DESKTOP="$HOME/.local/share/applications/$APP_ID.desktop"
 ICON="$HOME/.local/share/icons/hicolor/scalable/apps/$APP_ID.svg"
@@ -14,7 +14,7 @@ if [[ "${1:-}" == "--remover" ]]; then
     exit 0
 fi
 
-[[ -x "$ROOT/dist/eweadn-x87" ]] || "$ROOT/build.sh" >/dev/null
+"$ROOT/scripts/build.sh" >/dev/null
 
 install -Dm755 "$ROOT/dist/eweadn-x87" "$BIN"
 install -Dm644 "$ROOT/packaging/$APP_ID.svg" "$ICON"

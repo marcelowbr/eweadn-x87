@@ -1,12 +1,13 @@
 #!/usr/bin/env bash
 # Gera dist/eweadn-x87 (executável único) e dist/eweadn-x87_<versão>_all.deb
+# Uso: scripts/build.sh
 set -euo pipefail
 
-VERSION="${VERSION:-1.1.0}"
 APP_ID="io.github.eweadn.x87"
 # mantenedor do .deb (e-mail noreply do GitHub); pode trocar com a variável MAINTAINER
 MAINTAINER="${MAINTAINER:-Marcelo W. <112717310+marcelowbr@users.noreply.github.com>}"
-ROOT="$(cd "$(dirname "$0")" && pwd)"
+ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+VERSION="${VERSION:-$(sed -n 's/^__version__ = "\(.*\)"/\1/p' "$ROOT/src/eweadn_x87/__init__.py")}"
 DIST="$ROOT/dist"
 TMP="$(mktemp -d)"
 trap 'rm -rf "$TMP"' EXIT
@@ -16,7 +17,9 @@ mkdir -p "$DIST"
 
 # 1) executável único (zipapp: um .zip com o código, executado pelo python3 do sistema)
 mkdir -p "$TMP/app"
-cp "$ROOT"/__main__.py "$ROOT"/x87i18n.py "$ROOT"/x87proto.py "$ROOT"/x87gui.py "$ROOT"/x87preview.py "$TMP/app/"
+cp -r "$ROOT/src/eweadn_x87" "$TMP/app/"
+find "$TMP/app" -name __pycache__ -prune -exec rm -rf {} +
+printf 'import sys\nfrom eweadn_x87.__main__ import main\nsys.exit(main())\n' > "$TMP/app/__main__.py"
 python3 -m zipapp "$TMP/app" -o "$DIST/eweadn-x87" -p "/usr/bin/env python3" -c
 chmod +x "$DIST/eweadn-x87"
 echo "ok  $DIST/eweadn-x87"

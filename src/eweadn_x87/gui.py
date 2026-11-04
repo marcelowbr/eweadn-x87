@@ -3,7 +3,6 @@
 
 import json
 import os
-import sys
 import threading
 
 import gi
@@ -13,15 +12,15 @@ gi.require_version("Adw", "1")
 gi.require_version("Gdk", "4.0")
 from gi.repository import Adw, Gdk, GLib, GObject, Gio, Gtk  # noqa: E402
 
-import x87i18n  # noqa: E402
-import x87proto as p  # noqa: E402
-from x87i18n import tr  # noqa: E402
-from x87preview import KeyboardPreview  # noqa: E402
+from . import i18n  # noqa: E402
+from . import protocol as p  # noqa: E402
+from .i18n import tr  # noqa: E402
+from .preview import KeyboardPreview  # noqa: E402
 
 UNIT = 54  # pixels por unidade de tecla (1u)
 GAP = 4
 
-CONFIG = x87i18n.CONFIG
+CONFIG = i18n.CONFIG
 
 # Cores do teclado desenhado, uma paleta por tema
 PALETTE_LIGHT = b"""
@@ -794,7 +793,7 @@ class App(Adw.Application):
         act.set_state(value)
         self.cfg["lang"] = value.get_string()
         save_config(self.cfg)
-        x87i18n.set_language(value.get_string())
+        i18n.set_language(value.get_string())
         # recria a janela com os textos no novo idioma
         old = self.props.active_window
         win = Window(self)
@@ -821,7 +820,3 @@ class App(Adw.Application):
 
     def do_activate(self):
         (self.props.active_window or Window(self)).present()
-
-
-if __name__ == "__main__":
-    sys.exit(App().run(sys.argv))

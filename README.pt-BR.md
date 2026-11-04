@@ -66,13 +66,19 @@ terminal e instala uma regra udev para qualquer usuário logado acessar o teclad
 ```bash
 git clone https://github.com/marcelowbr/eweadn-x87.git
 cd eweadn-x87
-./install.sh            # instala só para o seu usuário, sem sudo (./install.sh --remover desinstala)
+scripts/install.sh      # instala só para o seu usuário, sem sudo (--remover desinstala)
 ```
 
 Ou rode sem instalar:
 
 ```bash
-python3 __main__.py
+PYTHONPATH=src python3 -m eweadn_x87
+```
+
+Também dá para instalar com pip (o GTK e o PyGObject continuam vindo dos pacotes do sistema):
+
+```bash
+pip install --user .
 ```
 
 Se o app disser que está **sem permissão** para abrir `/dev/hidrawN`, instale a regra udev uma vez:
@@ -85,7 +91,7 @@ sudo udevadm control --reload-rules && sudo udevadm trigger
 ### Gerando os pacotes
 
 ```bash
-./build.sh              # cria dist/eweadn-x87 (executável único) e dist/*.deb
+scripts/build.sh        # cria dist/eweadn-x87 (executável único) e dist/*.deb
 ```
 
 O `dist/eweadn-x87` é um zipapp do Python: um único arquivo com o app inteiro. Ele usa o Python
@@ -137,14 +143,18 @@ O protocolo foi descoberto por engenharia reversa do configurador web oficial (p
 interoperabilidade) e conferido no hardware. A documentação está em
 [docs/PROTOCOL.md](docs/PROTOCOL.md) (em inglês).
 
-| Arquivo | Função |
-|---|---|
-| `x87proto.py` | Protocolo HID, acesso ao aparelho e linha de comando |
-| `x87gui.py` | Interface GTK 4 / libadwaita |
-| `x87preview.py` | Pré-visualização animada da iluminação |
-| `x87i18n.py` | Textos em português e inglês |
-| `__main__.py` | Ponto de entrada (interface sem argumentos, linha de comando com argumentos) |
-| `build.sh`, `install.sh`, `packaging/` | Executável, `.deb`, atalho do menu, ícone e regra udev |
+```
+src/eweadn_x87/
+├── __main__.py     ponto de entrada: interface sem argumentos, linha de comando com argumentos
+├── protocol.py     protocolo HID e acesso ao aparelho
+├── cli.py          linha de comando
+├── gui.py          interface GTK 4 / libadwaita
+├── preview.py      pré-visualização animada da iluminação
+└── i18n.py         textos em português e inglês
+scripts/            build.sh (executável + .deb), install.sh (instalação por usuário)
+packaging/          atalho do menu, ícone e regra udev
+docs/               documentação do protocolo e capturas de tela
+```
 
 ## Aviso
 

@@ -5,16 +5,18 @@ import sys
 
 def main():
     if len(sys.argv) > 1 and not sys.argv[1].startswith("--gapplication"):
-        import x87proto
+        from .cli import main as cli_main
+        from .i18n import tr
+        from .protocol import X87Error
 
         try:
-            x87proto._cli()
-        except x87proto.X87Error as e:
-            raise SystemExit(x87proto.tr("Erro: {}").format(e))
+            cli_main()
+        except X87Error as e:
+            raise SystemExit(tr("Erro: {}").format(e))
         return 0
-    import x87gui
+    from .gui import App
 
-    return x87gui.App().run(sys.argv[:1])
+    return App().run(sys.argv[:1])
 
 
 if __name__ == "__main__":
